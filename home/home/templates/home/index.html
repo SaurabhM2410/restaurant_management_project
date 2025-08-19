@@ -1,1 +1,26 @@
-<h1>Welcome to {{ restaurant_name }}</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ restaurant_name }}</title>
+</head>
+<body style="margin:0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
+
+  <div style="display:flex; justify-content:center; align-items:center; height:100vh; flex-direction:column;">
+
+    <h1 style="color:#2c3e50; font-size:3em; margin-bottom:10px;">
+      Welcome to {{ restaurant_name }}
+    </h1>
+
+    <p style="font-size:1.2em; color:#555;">
+      Experience the best food in town 🍴
+    </p>
+
+    <a href="{% url 'restaurant' %}" 
+       style="margin-top:20px; padding:12px 24px; background:#3498db; color:white; 
+              text-decoration:none; border-radius:8px; font-weight:bold;">
+      About Restaurant
+    </a>
+
+  </div>
+</body>
+</html>
