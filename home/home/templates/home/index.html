@@ -2,35 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Menu</title>
+    <title>{{ restaurant_name }}</title>
     <style>
+        /* Reset some defaults */
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        h1 {
-            color: #d35400;
-        }
-        ul {
-            list-style: none;
+            margin: 0;
             padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
         }
-        li {
-            font-size: 1.2em;
-            margin: 8px 0;
+
+        header {
+            background-color: #d35400;
+            color: white;
+            padding: 20px 0;
         }
-        .price {
-            color: #27ae60;
-            font-weight: bold;
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+
+        .contact {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #444;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #eee;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <h1>Our Menu</h1>
-    <ul>
-        {% for item in menu_items %}
-            <li>{{ item.name }} — <span class="price">₹{{ item.price }}</span></li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>{{ restaurant_name }}</h1>
+    </header>
+
+    <main>
+        <p>Welcome to {{ restaurant_name }}! We are glad to serve you.</p>
+        <p class="contact"><strong>Contact us:</strong> {{ restaurant_phone }}</p>
+    </main>
+
+    <footer>
+        © 2025 {{ restaurant_name }} — All rights reserved.
+    </footer>
 </body>
 </html>
