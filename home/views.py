@@ -5,4 +5,5 @@ from django.conf import settings
 def homepage(request):
     return render(request, 'home.html', {
         'restaurant_name': settings.RESTAURANT_NAME
+        'restaurant_phone': settings.RESTAURANT_PHONE
     })
