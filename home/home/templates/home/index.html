@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>{{ restaurant_name }}</title>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #d35400;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            font-size: 1.2em;
+            margin: 8px 0;
+        }
+        .price {
+            color: #27ae60;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body style="margin:0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
-
-  <div style="display:flex; justify-content:center; align-items:center; height:100vh; flex-direction:column;">
-
-    <h1 style="color:#2c3e50; font-size:3em; margin-bottom:10px;">
-      Welcome to {{ restaurant_name }}
-    </h1>
-
-    <p style="font-size:1.2em; color:#555;">
-      Experience the best food in town 🍴
-    </p>
-
-    <a href="{% url 'restaurant' %}" 
-       style="margin-top:20px; padding:12px 24px; background:#3498db; color:white; 
-              text-decoration:none; border-radius:8px; font-weight:bold;">
-      About Restaurant
-    </a>
-
-  </div>
+<body>
+    <h1>Our Menu</h1>
+    <ul>
+        {% for item in menu_items %}
+            <li>{{ item.name }} — <span class="price">₹{{ item.price }}</span></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
-
-git add .
-git commit -m "Added  custom 404 page"
