@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import *
+from . import views
 
 urlpatterns = [
     path("about/", vi.about_restaurant, name='about_restaurant'),
