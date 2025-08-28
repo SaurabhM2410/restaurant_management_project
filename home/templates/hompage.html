@@ -1,15 +1,91 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Homepage</title>
+    <style>
+        /* Reset some default spacing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        header img {
+            width: 220px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #e67e22;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #d35400;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
-    <div style="text-align:center; margin-top:20px;">
-        <img src="{% static 'images/logo.png' %}" alt="Restaurant Logo" width="250">
-    </div>
 
-    <h1>Welcome to Our Restaurant</h1>
+    <header>
+        <img src="{% static 'images/logo.png' %}" alt="Restaurant Logo">
+        <h1>Welcome to Our Restaurant</h1>
+        <p>Delicious food, warm ambiance, and great service await you!</p>
+    </header>
+
+    <nav>
+        <a href="{% url 'homepage' %}">Home</a>
+        <a href="{% url 'menu' %}">Menu</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+
+    <footer>
+        <p>&copy; 2025 Our Restaurant. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
