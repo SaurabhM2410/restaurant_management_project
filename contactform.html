@@ -1,0 +1,23 @@
+<!-- Contact Form with Simple Client-side Validation -->
+<form id="contactForm" onsubmit="return validateContactForm()" style="width: 300px; margin: 40px auto;">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+  <button type="submit" style="padding: 10px 20px;">Submit</button>
+</form>
+
+<script>
+function validateContactForm() {
+  var name = document.getElementById("name").value.trim();
+  var email = document.getElementById("email").value.trim();
+
+  if (name === "" || email === "") {
+    alert("Please fill in both Name and Email fields.");
+    return false;
+  }
+  return true;
+}
+</script>
