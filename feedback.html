@@ -1,0 +1,22 @@
+// feedback route (server.js or app.js)
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+
+mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const feedbackSchema = new mongoose.Schema({
+  comments: String,
+  date: { type: Date, default: Date.now }
+});
+
+const Feedback = mongoose.model('Feedback', feedbackSchema);
+
+app.post('/submit-feedback', async (req, res) => {
+  const feedback = new Feedback({ comments: req.body.comments });
+  await feedback.save();
+  res.send('Thank you for your feedback!');
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
