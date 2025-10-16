@@ -1,0 +1,13 @@
+<!-- Basic Search Bar for Homepage -->
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 40px;">
+  <input
+    type="text"
+    placeholder="Search menu items by name..."
+    style="padding: 10px; font-size: 16px; width: 300px; border: 1px solid #ccc; border-radius: 4px 0 0 4px;"
+  />
+  <button
+    style="padding: 10px 20px; font-size: 16px; border: 1px solid #4caf50; border-left: none; background-color: #4caf50; color: white; border-radius: 0 4px 4px 0; cursor: pointer;"
+  >
+    Search
+  </button>
+</div>
