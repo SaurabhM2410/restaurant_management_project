@@ -1,34 +1,27 @@
 # orders/utils.py
 
-import string
-import secrets
-from django.utils.text import slugify
+from datetime import date as dt_date
+from decimal import Decimal
+from django.db.models import Sum
+from .models import Order  # Import your Order model
 
-from orders.models import Coupon  # adjust import if your model is elsewhere
 
-
-def generate_coupon_code(length: int = 10) -> str:
+def get_daily_sales_total(date: dt_date) -> Decimal:
     """
-    Generates a unique alphanumeric coupon code.
-    Ensures the generated code doesn't already exist in the Coupon table.
+    Calculate total sales for a given date by summing total_price of all orders.
 
     Args:
-        length (int): Desired length of the coupon code (default: 10)
+        date (datetime.date): The specific date to calculate sales for.
 
     Returns:
-        str: A unique coupon code string (e.g., 'A9F2G7K8QJ')
+        Decimal: Total sales amount for the day. Returns 0 if no orders.
     """
 
-    # Define character pool (uppercase letters + digits)
-    characters = string.ascii_uppercase + string.digits
+    # Filter orders for the given date
+    orders = Order.objects.filter(created_at__date=date)
 
-    while True:
-        # 1️⃣ Generate random code
-        code = ''.join(secrets.choice(characters) for _ in range(length))
+    # Aggregate sum of total_price
+    total_sum = orders.aggregate(total_sum=Sum('total_price'))['total_sum']
 
-        # Optional: make it cleaner if you want to show it in UI (like “SAVE-AX12”)
-        code = slugify(code).upper().replace('-', '')
-
-        # 2️⃣ Check uniqueness in database
-        if not Coupon.objects.filter(code=code).exists():
-            return code
+    # Return total or 0 if no orders
+    return total_sum if total_sum else Decimal('0.00')
