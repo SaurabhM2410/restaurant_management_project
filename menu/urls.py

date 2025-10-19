@@ -10,3 +10,12 @@ menu_item_update = MenuItemViewSet.as_view({
 urlpatterns = [
     path('menu/<int:pk>/', menu_item_update, name='menu-item-update'),
 ]
+# menu/urls.py
+from django.urls import path
+from .views import MenuItemSearchViewSet
+
+menu_item_search = MenuItemSearchViewSet.as_view({'get': 'list'})
+
+urlpatterns = [
+    path('menu/search/', menu_item_search, name='menu-item-search'),
+]
