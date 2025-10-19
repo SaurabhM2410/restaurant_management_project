@@ -1,19 +1,18 @@
-from django.utils import timezone
-from .models import Coupon
-from .serializers import CouponSerializer
+# orders/views.py
 
-class CouponValidationView(APIView):
-    def post(self, request, *args, **kwargs):
-        code = request.data.get('code', '').strip()
-        today = timezone.now().date()
-        try:
-            coupon = Coupon.objects.get(
-                code__iexact=code,
-                is_active=True,
-                valid_from__lte=today,
-                valid_until__gte=today
-            )
-            serializer = CouponSerializer(coupon)
-            return Response({"success": True, "discount_percentage": serializer.data['discount_percentage']}, status=status.HTTP_200_OK)
-        except Coupon.DoesNotExist:
-            return Response({"success": False, "error": "Invalid or expired coupon code."}, status=status.HTTP_400_BAD_REQUEST)
+from rest_framework import generics, permissions
+from .models import Order
+from .serializers import OrderSerializer
+
+
+class UserOrderHistoryView(generics.ListAPIView):
+    """
+    GET /api/orders/history/
+    Returns a list of past orders for the authenticated user.
+    """
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # Return orders only for the logged-in user, most recent first
+        return Order.objects.filter(user=self.request.user).order_by('-created_at')
